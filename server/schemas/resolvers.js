@@ -43,23 +43,24 @@ const resolvers = {
             return { token, user };
         },
 
-        saveBook: async (parent, { book }, context) => {
+        saveBook: async (parent, args, context) => {
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedBooks: book } },
-                    { new: true });
+                    { $addToSet: { savedBooks: { ...args } } },
+                    { new: true, runValidators: true });
+
                 return updatedUser;
             }
 
             throw new AuthenticationError('You need to Login')
         },
 
-        removeBook: async (parent, { bookId }, context) => {
+        removeBook: async (parent, args, context) => {
             if (!context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedBooks: { bookId: bookId } } },
+                    { $pull: { savedBooks: { bookId: args.bookId } } },
                     { new: true }
                 );
                 return updatedUser;

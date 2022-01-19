@@ -17,7 +17,6 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 //Apollo server:
-
 const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
