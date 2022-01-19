@@ -6,13 +6,13 @@ const db = require('./config/connection');
 const routes = require('./routes');
 
 
-
 //typeDefs, resolvers, middleware:
 const { typeDefs } = require('./schemas/typeDefs');
 const { resolvers } = require('./schemas/resolvers');
 
 const { authMiddleware } = require('./utils/auth');
 
+//Express:
 const app = express();
 const PORT = process.env.PORT || 3001;
 
