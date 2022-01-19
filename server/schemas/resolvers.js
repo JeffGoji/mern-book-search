@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Book } = require('../models');
 const { signToken } = require('../utils/auth');
 
 
@@ -49,6 +49,7 @@ const resolvers = {
                     { _id: context.user._id },
                     { $addToSet: { savedBooks: input } },
                     { new: true });
+
                 return updatedUser;
             }
 
