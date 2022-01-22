@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 // import { getMe, deleteBook } from '../utils/API';
@@ -6,31 +6,27 @@ import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 //Included useMutation so I could impliment them:
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 import { REMOVE_BOOK } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 
 const SavedBooks = () => {
-
   const { loading, data } = useQuery(GET_ME);
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
-  const userData = data?.me || {};
+  const userData = data?.me || {}
 
+  const [deleteBook] = useMutation(REMOVE_BOOK);
+  //Accepts the MongoID value as a param:
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
     if (!token) {
       return false;
     }
-
+    console.log(bookId);
     try {
-      const { data } = await removeBook({
+      const { data } = await deleteBook({
         variables: { bookId }
       });
 
-      if (error) {
-        throw new Error('Something went wrong!');
-      }
 
       removeBookId(bookId);
     } catch (err) {

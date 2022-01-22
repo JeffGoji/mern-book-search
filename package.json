@@ -9,10 +9,10 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "heroku-postbuild": "cd client && npm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jeffrey Anderson-Lester",
   "license": "ISC",
   "devDependencies": {
     "node": "16.13.0",
