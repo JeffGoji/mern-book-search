@@ -60,9 +60,7 @@ const resolvers = {
 
         removeBook: async (parent, { bookId }, context) => {
             if (!context.user) {
-                throw new AuthenticationError("Not logged in!");
-            }
-            else {
+
                 const updatedUser = await User.findByIdAndUpdate(
                     // finds the user 
                     { _id: context.user._id },
@@ -72,6 +70,10 @@ const resolvers = {
                 );
                 return updatedUser;
             }
+
+            throw new AuthenticationError("Not logged in!");
+
+
         }
 
 
