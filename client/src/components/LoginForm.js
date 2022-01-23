@@ -6,24 +6,28 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
+
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [loginUser, { error }] = useMutation(LOGIN_USER);
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
+
   useEffect(() => {
     if (error) {
       setShowAlert(true);
     } else {
-      setShowAlert(false)
+      setShowAlert(false);
     }
-  }, [error])
+  }, [error]);
 
+  // Updated with Apollo/GRaphql syntax
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -35,26 +39,21 @@ const LoginForm = () => {
       event.stopPropagation();
     }
 
+    // Updated with Apollo/GRaphql syntax
     try {
-      const { data } = await loginUser(
-        {
-          variables: { ...userFormData },
-        });
+      const { data } = await loginUser({ variables: { ...userFormData } });
 
-
+      console.log(data);
       Auth.login(data.loginUser.token);
-    }
-
-    catch (e) {
+    } catch (e) {
       console.error(e);
       setShowAlert(true);
     }
 
     setUserFormData({
-
-      username: '',
-      email: '',
-      password: '',
+      username: "",
+      email: "",
+      password: "",
     });
   };
 
