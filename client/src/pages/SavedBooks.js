@@ -12,9 +12,11 @@ import { GET_ME } from '../utils/queries';
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
+
   const userData = data?.me || {}
 
-  const [deleteBook] = useMutation(REMOVE_BOOK);
+  const [deleteBook, { error }] = useMutation(REMOVE_BOOK);
+
   //Accepts the MongoID value as a param:
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -22,16 +24,21 @@ const SavedBooks = () => {
       return false;
     }
     console.log(bookId);
-    try {
-      const { data } = await deleteBook({
-        variables: { bookId }
-      });
 
+    try {
+      const { data } = await deleteBook({ variables: { bookId } });
+      console.log(data);
+
+      if (error) {
+        throw new Error('Something went wrong!');
+
+      }
 
       removeBookId(bookId);
     } catch (err) {
       console.error(err);
     }
+
   };
 
   if (loading) {

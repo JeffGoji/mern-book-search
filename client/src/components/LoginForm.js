@@ -41,7 +41,7 @@ const LoginForm = () => {
           variables: { ...userFormData },
         });
 
-      console.log(data);
+
       Auth.login(data.loginUser.token);
     }
 
