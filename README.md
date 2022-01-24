@@ -56,3 +56,6 @@ This product can be tested through the demo link.
 
 - Github: [Jeff Lester](https://github.com/JeffGoji)
 - Email: jeff.lester01@outlook.com
+
+## Special Mention:
+A huge thank you to my friend [Julie Summers](https://github.com/Jsumme1) for collaborating with me on this project.
