@@ -2,7 +2,7 @@
 
 ## Demo Link:
 
-[The Amazing Bookstore!](https://dashboard.heroku.com/apps/the-amazing-bookstore)
+[The Amazing Bookstore!](https://the-amazing-bookstore.herokuapp.com/)
 
 ## Licensing:
 
@@ -25,7 +25,7 @@ This is a MERN-Stack book-search application that uses the Google Books API to o
 Users can sign up and log-in for an account, search for a book, add it to a list. Users can also remove books from that list.
 
 ## Deployed Website:
-[https://dashboard.heroku.com/apps/the-amazing-bookstore](https://dashboard.heroku.com/apps/the-amazing-bookstore)
+[https://dashboard.heroku.com/apps/the-amazing-bookstore](https://the-amazing-bookstore.herokuapp.com/)
 
 ## Installation:
 
